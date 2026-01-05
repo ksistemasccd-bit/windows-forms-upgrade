@@ -129,7 +129,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
         </h2>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div ref={formRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-background p-4 rounded-lg">
           {/* Left Section - Logo and QR */}
           <div className="lg:col-span-2 flex flex-col items-center gap-8">
             <CCDLogo />
@@ -138,7 +138,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
 
           {/* Middle Section - Form */}
           <div className="lg:col-span-5">
-            <div ref={formRef} className="ccd-card p-6 md:p-8">
+            <div className="ccd-card p-6 md:p-8">
               <RegistrationForm 
                 onSubmit={handleSubmit}
                 formData={formData}
