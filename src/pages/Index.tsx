@@ -4,7 +4,7 @@ import RegistrationForm from "@/components/RegistrationForm";
 import TermsPanel from "@/components/TermsPanel";
 import QRCodeSection from "@/components/QRCodeSection";
 import { Button } from "@/components/ui/button";
-import { FileDown, Camera, Copy, Printer } from "lucide-react";
+import { FileDown, Camera, Copy, Printer, Image } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -21,6 +21,7 @@ interface FormData {
 const Index = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
   const qrRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({
     alumno: "",
@@ -173,6 +174,50 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
     window.print();
   };
 
+  const handlePhotoCapture = async () => {
+    if (mainRef.current) {
+      try {
+        // Create a wrapper div with white background and proper styling
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 1200px; background: white; padding: 20px;';
+        document.body.appendChild(wrapper);
+        
+        // Clone the main content
+        const clone = mainRef.current.cloneNode(true) as HTMLElement;
+        clone.style.width = '100%';
+        wrapper.appendChild(clone);
+        
+        // Wait for rendering
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        const canvas = await html2canvas(wrapper, {
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+        } as any);
+        
+        // Remove the wrapper
+        document.body.removeChild(wrapper);
+        
+        const link = document.createElement('a');
+        link.download = `foto-registro-${formData.dni || 'matricula'}.png`;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+        
+        toast({
+          title: "¡Foto capturada!",
+          description: "La imagen se ha descargado correctamente.",
+        });
+      } catch (err) {
+        toast({
+          title: "Error",
+          description: "No se pudo capturar la foto.",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -187,35 +232,37 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        {/* Title */}
-        <h2 className="font-heading text-2xl md:text-4xl font-extrabold text-primary mb-8 animate-fade-in">
-          REGISTRO DE MATRÍCULA CCD 2026
-        </h2>
+        <div ref={mainRef} className="bg-white p-6 rounded-lg">
+          {/* Title */}
+          <h2 className="font-heading text-2xl md:text-4xl font-extrabold text-primary mb-8 animate-fade-in">
+            REGISTRO DE MATRÍCULA CCD 2026
+          </h2>
 
-        {/* Grid Layout */}
-        <div ref={formRef} data-capture="true" className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-4 rounded-lg">
-          {/* Left Section - Logo and QR */}
-          <div className="lg:col-span-2 flex flex-col items-center gap-8">
-            <CCDLogo />
-            <div ref={qrRef}>
-              <QRCodeSection dni={formData.dni} showQR={formData.dni.length >= 8} />
+          {/* Grid Layout */}
+          <div ref={formRef} data-capture="true" className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-4 rounded-lg">
+            {/* Left Section - Logo and QR */}
+            <div className="lg:col-span-2 flex flex-col items-center gap-8">
+              <CCDLogo />
+              <div ref={qrRef}>
+                <QRCodeSection dni={formData.dni} showQR={formData.dni.length >= 8} />
+              </div>
             </div>
-          </div>
 
-          {/* Middle Section - Form */}
-          <div className="lg:col-span-5">
-            <div className="ccd-card p-6 md:p-8">
-              <RegistrationForm 
-                onSubmit={handleSubmit}
-                formData={formData}
-                setFormData={setFormData}
-              />
+            {/* Middle Section - Form */}
+            <div className="lg:col-span-5">
+              <div className="ccd-card p-6 md:p-8">
+                <RegistrationForm 
+                  onSubmit={handleSubmit}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Right Section - Terms */}
-          <div className="lg:col-span-5">
-            <TermsPanel />
+            {/* Right Section - Terms */}
+            <div className="lg:col-span-5">
+              <TermsPanel />
+            </div>
           </div>
         </div>
       </main>
@@ -236,6 +283,15 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
             >
               <FileDown className="w-4 h-4 mr-2" />
               DESCARGAR PDF
+            </Button>
+            
+            <Button 
+              onClick={handlePhotoCapture}
+              variant="outline"
+              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
+            >
+              <Image className="w-4 h-4 mr-2" />
+              FOTO
             </Button>
             
             <Button 
