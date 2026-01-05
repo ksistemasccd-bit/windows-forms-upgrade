@@ -19,7 +19,7 @@ const TermsPanel = () => {
         {/* Header with Logo */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
-            <img src="/icon-ccd-terms.ico" alt="CCD Logo" className="w-10 h-10" />
+            <img src="/logo-ccd-blanco.png" alt="CCD Logo" className="h-10" />
           </div>
           
           {/* Social Icons */}
