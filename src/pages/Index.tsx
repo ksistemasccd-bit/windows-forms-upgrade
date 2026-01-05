@@ -175,10 +175,19 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   const handleCaptureImage = async () => {
     if (formRef.current) {
       try {
-        const canvas = await html2canvas(formRef.current);
+        // Capture with specific options for horizontal layout
+        const canvas = await html2canvas(formRef.current, {
+          useCORS: true,
+          allowTaint: true,
+          background: '#ffffff',
+          width: formRef.current.scrollWidth,
+          height: formRef.current.scrollHeight,
+          windowWidth: 1400, // Force desktop width for horizontal layout
+        } as any);
+        
         const link = document.createElement('a');
         link.download = `registro-${formData.dni || 'matricula'}.png`;
-        link.href = canvas.toDataURL();
+        link.href = canvas.toDataURL('image/png', 1.0);
         link.click();
         
         toast({
