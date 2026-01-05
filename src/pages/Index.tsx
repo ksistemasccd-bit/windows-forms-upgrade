@@ -4,7 +4,7 @@ import RegistrationForm from "@/components/RegistrationForm";
 import TermsPanel from "@/components/TermsPanel";
 import QRCodeSection from "@/components/QRCodeSection";
 import { Button } from "@/components/ui/button";
-import { FileDown, Camera, Copy } from "lucide-react";
+import { FileDown, Camera, Copy, Printer } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -109,6 +109,10 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
     }
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -188,6 +192,15 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
             >
               <Copy className="w-4 h-4 mr-2" />
               COPIAR DATOS
+            </Button>
+            
+            <Button 
+              onClick={handlePrint}
+              variant="outline"
+              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
+            >
+              <Printer className="w-4 h-4 mr-2" />
+              IMPRIMIR
             </Button>
           </div>
         </div>
