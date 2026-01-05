@@ -120,15 +120,35 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   const handleCaptureImage = async () => {
     if (formRef.current) {
       try {
-        // Capture with specific options for horizontal layout
-        const canvas = await html2canvas(formRef.current, {
+        // Force the element to render at full desktop width
+        const element = formRef.current;
+        const originalStyle = element.style.cssText;
+        
+        // Temporarily set fixed width for consistent capture
+        element.style.width = '1200px';
+        element.style.minWidth = '1200px';
+        
+        // Wait for styles to apply
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Capture with high quality settings
+        const canvas = await html2canvas(element, {
           useCORS: true,
           allowTaint: true,
-          background: '#ffffff',
-          width: formRef.current.scrollWidth,
-          height: formRef.current.scrollHeight,
-          windowWidth: 1400, // Force desktop width for horizontal layout
+          logging: false,
+          imageTimeout: 0,
+          onclone: (clonedDoc) => {
+            const clonedElement = clonedDoc.querySelector('[data-capture="true"]') as HTMLElement;
+            if (clonedElement) {
+              clonedElement.style.width = '1200px';
+              clonedElement.style.display = 'flex';
+              clonedElement.style.flexDirection = 'row';
+            }
+          }
         } as any);
+        
+        // Restore original styles
+        element.style.cssText = originalStyle;
         
         const link = document.createElement('a');
         link.download = `registro-${formData.dni || 'matricula'}.png`;
@@ -173,7 +193,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
         </h2>
 
         {/* Grid Layout */}
-        <div ref={formRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-background p-4 rounded-lg">
+        <div ref={formRef} data-capture="true" className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-4 rounded-lg">
           {/* Left Section - Logo and QR */}
           <div className="lg:col-span-2 flex flex-col items-center gap-8">
             <CCDLogo />
