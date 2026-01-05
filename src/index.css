@@ -205,7 +205,7 @@
   .grid {
     display: flex !important;
     flex-direction: row !important;
-    gap: 15px !important;
+    gap: 10px !important;
     align-items: stretch !important;
   }
 
@@ -216,10 +216,27 @@
     min-width: 0 !important;
   }
 
-  /* Equal height cards */
-  .lg\\:col-span-2 > *,
-  .lg\\:col-span-5 > * {
+  /* Uniform borders for all sections */
+  .lg\\:col-span-2,
+  .lg\\:col-span-5 > div {
+    border: 1px solid #003366 !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    background: white !important;
     height: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* First column (Logo/QR) styling */
+  .lg\\:col-span-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #003366 !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    background: #f8fafc !important;
   }
 
   /* Compact cards */
@@ -285,25 +302,42 @@
     max-height: 80px !important;
   }
 
-  /* Terms panel compact */
+  /* Terms panel - much more compact */
   .overflow-y-auto {
     max-height: none !important;
     overflow: visible !important;
   }
 
+  /* Terms section header */
   h3 {
-    font-size: 12px !important;
-    margin-bottom: 4px !important;
+    font-size: 10px !important;
+    margin-bottom: 3px !important;
+    padding-bottom: 2px !important;
+    border-bottom: 1px solid #003366 !important;
   }
 
   h4 {
-    font-size: 10px !important;
+    font-size: 8px !important;
+    margin-bottom: 2px !important;
+    margin-top: 3px !important;
   }
 
+  /* Terms text very compact */
   p, li {
-    font-size: 8px !important;
-    line-height: 1.2 !important;
-    margin-bottom: 2px !important;
+    font-size: 6px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1px !important;
+  }
+
+  ul, ol {
+    padding-left: 8px !important;
+    margin: 0 !important;
+  }
+
+  /* Hide unnecessary spacing in terms */
+  .space-y-3 > * + *,
+  .space-y-2 > * + * {
+    margin-top: 2px !important;
   }
 
   /* Page setup - Horizontal, 1 page */
