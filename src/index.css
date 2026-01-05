@@ -233,9 +233,9 @@
     padding: 5px 0 !important;
   }
 
-  /* Page setup */
+  /* Page setup - Horizontal */
   @page {
     margin: 1cm;
-    size: A4;
+    size: A4 landscape;
   }
 }
