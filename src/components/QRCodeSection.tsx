@@ -8,7 +8,8 @@ interface QRCodeSectionProps {
 }
 
 const QRCodeSection = ({ dni, showQR }: QRCodeSectionProps) => {
-  const qrValue = dni || "CCD-REGISTRO-2025";
+  // Always redirect to CCD website
+  const qrValue = "https://www.ccdcapacitacion.edu.pe/";
 
   return (
     <div className="flex flex-col items-center gap-4 animate-fade-in">
