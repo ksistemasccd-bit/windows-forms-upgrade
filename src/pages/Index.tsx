@@ -273,54 +273,6 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
           <p className="text-primary-foreground/80 text-sm text-center mb-4">
             © 2026 Centro de Capacitación y Desarrollo CCD. Todos los derechos reservados.
           </p>
-          
-          {/* Action Buttons */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button 
-              onClick={handleDownloadPDF}
-              variant="outline"
-              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <FileDown className="w-4 h-4 mr-2" />
-              DESCARGAR PDF
-            </Button>
-            
-            <Button 
-              onClick={handlePhotoCapture}
-              variant="outline"
-              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Image className="w-4 h-4 mr-2" />
-              FOTO
-            </Button>
-            
-            <Button 
-              onClick={handleCaptureImage}
-              variant="outline"
-              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Camera className="w-4 h-4 mr-2" />
-              CAPTURAR FOTO
-            </Button>
-            
-            <Button 
-              onClick={handleCopyData}
-              variant="outline"
-              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Copy className="w-4 h-4 mr-2" />
-              COPIAR DATOS
-            </Button>
-            
-            <Button 
-              onClick={handlePrint}
-              variant="outline"
-              className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Printer className="w-4 h-4 mr-2" />
-              IMPRIMIR
-            </Button>
-          </div>
         </div>
       </footer>
     </div>
