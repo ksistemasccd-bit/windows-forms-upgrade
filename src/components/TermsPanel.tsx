@@ -1,5 +1,4 @@
 import { CheckCircle2, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
-import bannerImage from "@/assets/banner-ccd.jpg";
 
 const TermsPanel = () => {
   const terms = [
@@ -12,14 +11,8 @@ const TermsPanel = () => {
 
   return (
     <div className="relative overflow-hidden rounded-xl ccd-shadow h-full animate-slide-in-right">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${bannerImage})` }}
-      />
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-transparent" />
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/70" />
       
       {/* Content */}
       <div className="relative z-10 p-8 h-full flex flex-col">
