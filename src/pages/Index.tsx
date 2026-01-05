@@ -78,7 +78,7 @@ const Index = () => {
       <footer className="bg-primary py-4 mt-12">
         <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
           <p className="text-primary-foreground/80 text-sm">
-            © 2025 Centro de Capacitación y Desarrollo CCD. Todos los derechos reservados.
+            © 2026 Centro de Capacitación y Desarrollo CCD. Todos los derechos reservados.
           </p>
         </div>
       </footer>
