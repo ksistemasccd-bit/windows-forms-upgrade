@@ -32,9 +32,7 @@ const Index = () => {
       {/* Header */}
       <header className="bg-card border-b border-border py-3 px-4 md:px-8 ccd-shadow">
         <div className="max-w-7xl mx-auto flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full ccd-gradient flex items-center justify-center">
-            <span className="text-primary-foreground font-heading font-bold text-xs">CCD</span>
-          </div>
+          <img src="/icon-ccd.ico" alt="CCD Logo" className="w-8 h-8" />
           <h1 className="font-heading font-bold text-primary text-sm md:text-base">
             CENTRO DE CAPACITACIÓN Y DESARROLLO - CCD
           </h1>
