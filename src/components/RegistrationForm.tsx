@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-
+import { Copy } from "lucide-react";
 interface FormData {
   alumno: string;
   dni: string;
@@ -44,13 +44,33 @@ const RegistrationForm = ({ onSubmit, formData, setFormData }: RegistrationFormP
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 800));
     
+    // Generar texto para copiar
+    const registroTexto = `REGISTRO DE MATRÍCULA - CCD
+================================
+ALUMNO: ${formData.alumno}
+DNI: ${formData.dni}
+CURSO: ${formData.curso}
+CORREO: ${formData.correo}
+CELULAR: ${formData.celular}
+================================
+Fecha: ${new Date().toLocaleDateString('es-PE')}`;
+    
+    // Copiar al portapapeles
+    try {
+      await navigator.clipboard.writeText(registroTexto);
+      toast({
+        title: "¡Registro copiado!",
+        description: "Los datos han sido copiados al portapapeles. Puede pegarlos donde desee.",
+      });
+    } catch (err) {
+      toast({
+        title: "¡Registro exitoso!",
+        description: "La matrícula ha sido registrada correctamente",
+      });
+    }
+    
     onSubmit(formData);
     setIsSubmitting(false);
-    
-    toast({
-      title: "¡Registro exitoso!",
-      description: "La matrícula ha sido registrada correctamente",
-    });
   };
 
   return (
