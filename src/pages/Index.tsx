@@ -8,6 +8,7 @@ import { FileDown, Camera, Copy, Printer } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { QRCodeCanvas } from "qrcode.react";
 
 interface FormData {
   alumno: string;
@@ -20,6 +21,7 @@ interface FormData {
 const Index = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLDivElement>(null);
+  const qrRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({
     alumno: "",
     dni: "",
@@ -146,6 +148,22 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
     doc.setTextColor(150, 150, 150);
     doc.text("Este documento es válido como comprobante de matrícula.", pageWidth / 2, 195, { align: 'center' });
     
+    // Add QR Code if DNI exists
+    if (formData.dni.length >= 8 && qrRef.current) {
+      try {
+        const qrCanvas = qrRef.current.querySelector('canvas');
+        if (qrCanvas) {
+          const qrDataUrl = qrCanvas.toDataURL('image/png');
+          doc.addImage(qrDataUrl, 'PNG', pageWidth - 55, 55, 35, 35);
+          doc.setFontSize(8);
+          doc.setTextColor(0, 51, 102);
+          doc.text("Código QR", pageWidth - 37.5, 95, { align: 'center' });
+        }
+      } catch (e) {
+        console.log("QR not loaded");
+      }
+    }
+    
     doc.save(`matricula-${formData.dni || 'registro'}.pdf`);
     
     toast({
@@ -205,7 +223,9 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
           {/* Left Section - Logo and QR */}
           <div className="lg:col-span-2 flex flex-col items-center gap-8">
             <CCDLogo />
-            <QRCodeSection dni={formData.dni} showQR={formData.dni.length >= 8} />
+            <div ref={qrRef}>
+              <QRCodeSection dni={formData.dni} showQR={formData.dni.length >= 8} />
+            </div>
           </div>
 
           {/* Middle Section - Form */}
