@@ -153,3 +153,48 @@
     background-image: var(--gradient-primary);
   }
 }
+
+/* Print styles - Only show form content */
+@media print {
+  /* Hide header and footer */
+  header,
+  footer {
+    display: none !important;
+  }
+
+  /* Reset background and remove shadows */
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .min-h-screen {
+    min-height: auto !important;
+  }
+
+  /* Optimize main content for print */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure form content prints well */
+  .ccd-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    page-break-inside: avoid;
+  }
+
+  /* Hide action buttons in print */
+  button {
+    display: none !important;
+  }
+
+  /* Show form inputs as text */
+  input,
+  select {
+    border: none !important;
+    background: transparent !important;
+  }
+}
