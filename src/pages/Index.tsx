@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { QRCodeCanvas } from "qrcode.react";
+import backgroundCcd from "@/assets/background-ccd.jpg";
 
 interface FormData {
   alumno: string;
@@ -218,7 +219,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen" style={{ backgroundImage: `url(${backgroundCcd})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       {/* Header */}
       <header className="bg-card border-b border-border py-3 px-4 md:px-8 ccd-shadow">
         <div className="max-w-7xl mx-auto flex items-center gap-3">
