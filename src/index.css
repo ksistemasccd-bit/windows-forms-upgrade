@@ -237,10 +237,10 @@
     box-sizing: border-box !important;
   }
 
-  /* Last column - Términos (40% width) */
+  /* Last column - Términos (36% width - more compact) */
   .lg\\:col-span-5:last-child {
-    flex: 0 0 40% !important;
-    max-width: 40% !important;
+    flex: 0 0 36% !important;
+    max-width: 36% !important;
     box-sizing: border-box !important;
     border-top: none !important;
     margin-top: 0 !important;
@@ -257,10 +257,19 @@
     height: 100% !important;
   }
 
-  /* Terms panel styling for print */
+  /* Terms panel styling for print - very compact */
   .terms-panel-capture {
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     height: 100% !important;
+    padding: 6px !important;
+  }
+
+  .terms-panel-capture > div:first-child {
+    padding: 6px !important;
+  }
+
+  .terms-panel-capture .p-8 {
+    padding: 6px !important;
   }
 
   /* Compact cards */
@@ -288,13 +297,17 @@
     margin-bottom: 8px !important;
   }
 
+  .mb-6 {
+    margin-bottom: 4px !important;
+  }
+
   .space-y-4 > * + * {
     margin-top: 4px !important;
   }
 
   /* Labels clear and bold */
   label {
-    font-size: 12px !important;
+    font-size: 11px !important;
     font-weight: 700 !important;
     color: #003366 !important;
   }
@@ -310,24 +323,41 @@
     border: none !important;
     border-bottom: 2px solid #003366 !important;
     background: transparent !important;
-    padding: 4px 0 !important;
-    font-size: 14px !important;
+    padding: 3px 0 !important;
+    font-size: 13px !important;
     font-weight: 600 !important;
     color: #1a1a1a !important;
     height: auto !important;
-    min-height: 24px !important;
+    min-height: 22px !important;
   }
 
   /* QR visible */
   canvas {
-    max-width: 100px !important;
-    max-height: 100px !important;
+    max-width: 90px !important;
+    max-height: 90px !important;
   }
 
   /* Logo clear */
   img {
-    max-width: 100px !important;
-    max-height: 100px !important;
+    max-width: 90px !important;
+    max-height: 90px !important;
+  }
+
+  /* Terms logo smaller */
+  .terms-panel-capture img {
+    max-width: 60px !important;
+    max-height: 40px !important;
+  }
+
+  /* Terms social icons smaller */
+  .terms-panel-capture .w-8 {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .terms-panel-capture .w-4 {
+    width: 12px !important;
+    height: 12px !important;
   }
 
   /* Terms panel - much more compact */
@@ -336,41 +366,73 @@
     overflow: visible !important;
   }
 
+  /* Terms header text smaller */
+  .terms-panel-capture .text-3xl,
+  .terms-panel-capture .md\\:text-4xl {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .terms-panel-capture .text-sm {
+    font-size: 7px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Terms checkmark icons smaller */
+  .terms-panel-capture .w-5 {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
   /* Terms section header */
   h3 {
-    font-size: 14px !important;
-    margin-bottom: 6px !important;
-    padding-bottom: 4px !important;
+    font-size: 12px !important;
+    margin-bottom: 4px !important;
+    padding-bottom: 3px !important;
     border-bottom: 1px solid #003366 !important;
   }
 
   h4 {
-    font-size: 12px !important;
-    margin-bottom: 4px !important;
-    margin-top: 6px !important;
+    font-size: 10px !important;
+    margin-bottom: 3px !important;
+    margin-top: 4px !important;
   }
 
-  /* Terms text readable */
+  /* Terms text compact */
   p, li {
-    font-size: 10px !important;
-    line-height: 1.4 !important;
-    margin-bottom: 3px !important;
+    font-size: 7px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1px !important;
   }
 
   ul, ol {
-    padding-left: 12px !important;
+    padding-left: 8px !important;
     margin: 0 !important;
   }
 
   /* Hide unnecessary spacing in terms */
   .space-y-3 > * + *,
   .space-y-2 > * + * {
-    margin-top: 2px !important;
+    margin-top: 1px !important;
+  }
+
+  /* Terms gap compact */
+  .terms-panel-capture .gap-3 {
+    gap: 2px !important;
+  }
+
+  /* Terms footer */
+  .terms-panel-capture .pt-4 {
+    padding-top: 2px !important;
+  }
+
+  .terms-panel-capture .mt-6 {
+    margin-top: 4px !important;
   }
 
   /* Page setup - Horizontal for 3 columns */
   @page {
-    margin: 0.5cm;
+    margin: 0.4cm;
     size: A4 landscape;
   }
 }
