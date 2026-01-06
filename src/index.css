@@ -206,56 +206,59 @@
     color: #003366 !important;
   }
 
-  /* Grid horizontal for print - adjusted proportions */
+  /* Grid vertical for print - two rows layout */
   .grid {
     display: flex !important;
-    flex-direction: row !important;
-    gap: 8px !important;
-    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
 
-  /* First column - Logo/QR (20%) */
-  .lg\\:col-span-2:first-child {
-    flex: 0 0 18% !important;
-    max-width: 18% !important;
-    min-width: 0 !important;
-  }
-
-  /* Middle column - Formulario (50%) */
+  /* Create a wrapper effect - Top row: Logo + Form side by side */
+  .lg\\:col-span-2:first-child,
   .lg\\:col-span-5:nth-child(2) {
-    flex: 0 0 48% !important;
-    max-width: 48% !important;
-    min-width: 0 !important;
+    display: inline-block !important;
+    vertical-align: top !important;
   }
 
-  /* Last column - Términos (32%) */
-  .lg\\:col-span-5:last-child {
-    flex: 0 0 32% !important;
-    max-width: 32% !important;
-    min-width: 0 !important;
-  }
-
-  /* Uniform borders for all sections */
-  .lg\\:col-span-2,
-  .lg\\:col-span-5 > div {
-    border: 1px solid #003366 !important;
-    border-radius: 4px !important;
-    padding: 6px !important;
-    background: white !important;
-    height: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* First column (Logo/QR) styling */
-  .lg\\:col-span-2 {
-    display: flex !important;
+  /* First column - Logo/QR (25% width, inline) */
+  .lg\\:col-span-2:first-child {
+    width: 22% !important;
+    max-width: 22% !important;
+    display: inline-flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
     border: 1px solid #003366 !important;
     border-radius: 4px !important;
-    padding: 6px !important;
+    padding: 8px !important;
     background: #f8fafc !important;
+    margin-right: 2% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Middle column - Formulario (72% width, inline) */
+  .lg\\:col-span-5:nth-child(2) {
+    width: 74% !important;
+    max-width: 74% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Last column - Términos (100% width, below, after middle of page) */
+  .lg\\:col-span-5:last-child {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 15px !important;
+    padding-top: 10px !important;
+    border-top: 2px solid #003366 !important;
+  }
+
+  /* Uniform borders for form section */
+  .lg\\:col-span-5:nth-child(2) > div {
+    border: 1px solid #003366 !important;
+    border-radius: 4px !important;
+    padding: 10px !important;
+    background: white !important;
+    box-sizing: border-box !important;
   }
 
   /* Compact cards */
