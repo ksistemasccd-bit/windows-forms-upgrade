@@ -149,11 +149,11 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
       </div>
 
       <Button
-        type="submit"
+        type="button"
+        onClick={() => window.print()}
         className="w-full ccd-gradient text-primary-foreground font-heading font-bold py-6 text-lg hover:opacity-90 transition-opacity mt-6"
-        disabled={isSubmitting}
       >
-        {isSubmitting ? "REGISTRANDO..." : "MATRÍCULA EXITOSA"}
+        MATRÍCULA EXITOSA
       </Button>
     </form>
   );
