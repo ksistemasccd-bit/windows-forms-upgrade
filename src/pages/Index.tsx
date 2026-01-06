@@ -177,30 +177,40 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   const handlePhotoCapture = async () => {
     if (mainRef.current) {
       try {
-        // Raw screenshot - 100% faithful to screen, no effects
+        // Windows Snipping Tool style - raw screenshot, no effects
         const canvas = await html2canvas(mainRef.current, {
           useCORS: true,
           allowTaint: true,
           logging: false,
-          backgroundColor: null, // Transparent, use actual background
-          scale: 1, // 1:1 pixel ratio, no upscaling
+          scale: window.devicePixelRatio || 1, // Match actual screen DPI
+          backgroundColor: '#ffffff',
           imageTimeout: 0,
           removeContainer: true,
+          foreignObjectRendering: false, // Disable for cleaner render
+          windowWidth: mainRef.current.scrollWidth,
+          windowHeight: mainRef.current.scrollHeight,
         } as any);
-        
-        const link = document.createElement('a');
-        link.download = `foto-registro-${formData.dni || 'matricula'}.png`;
-        link.href = canvas.toDataURL('image/png', 1.0);
-        link.click();
-        
-        toast({
-          title: "¡Foto capturada!",
-          description: "La imagen se ha descargado correctamente.",
-        });
+
+        // Convert to blob for raw PNG without compression artifacts
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = `captura-${formData.dni || 'registro'}.png`;
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            toast({
+              title: "¡Captura realizada!",
+              description: "Imagen descargada como captura de pantalla.",
+            });
+          }
+        }, 'image/png');
       } catch (err) {
         toast({
           title: "Error",
-          description: "No se pudo capturar la foto.",
+          description: "No se pudo realizar la captura.",
           variant: "destructive",
         });
       }
