@@ -232,7 +232,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        <div ref={mainRef} className="bg-white p-6 rounded-lg">
+        <div ref={mainRef} className="p-6 rounded-lg" style={{ backgroundImage: `url(${backgroundCcd})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
           {/* Title */}
           <h2 className="font-heading text-2xl md:text-4xl font-extrabold text-primary mb-8 animate-fade-in">
             REGISTRO DE MATRÍCULA CCD 2026
