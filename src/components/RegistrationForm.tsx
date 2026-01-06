@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import backgroundCcd from "@/assets/background-ccd.jpg";
 interface FormData {
   alumno: string;
   dni: string;
@@ -74,7 +75,7 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 animate-fade-in">
+    <form onSubmit={handleSubmit} className="space-y-4 animate-fade-in p-6 rounded-lg" style={{ backgroundImage: `url(${backgroundCcd})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="space-y-2">
         <Label htmlFor="alumno" className="text-foreground font-semibold">
           ALUMNO :

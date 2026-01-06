@@ -1,5 +1,5 @@
 import { CheckCircle2, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
-
+import backgroundCcd from "@/assets/background-ccd.jpg";
 const TermsPanel = () => {
   const terms = [
     "Incluye el certificado digital del CCD.",
@@ -10,9 +10,9 @@ const TermsPanel = () => {
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-xl ccd-shadow h-full animate-slide-in-right terms-panel-capture">
-      {/* Solid Gradient Background - no transparency for better capture */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#003366] via-[#004080] to-[#0066a6]" />
+    <div className="relative overflow-hidden rounded-xl ccd-shadow h-full animate-slide-in-right terms-panel-capture" style={{ backgroundImage: `url(${backgroundCcd})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Overlay for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#003366]/90 via-[#004080]/90 to-[#0066a6]/90" />
       
       {/* Content */}
       <div className="relative z-10 p-8 h-full flex flex-col">
