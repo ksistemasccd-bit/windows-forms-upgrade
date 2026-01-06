@@ -206,59 +206,60 @@
     color: #003366 !important;
   }
 
-  /* Grid vertical for print - two rows layout */
+  /* Grid horizontal for print - 3 columns side by side */
   .grid {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    align-items: stretch !important;
   }
 
-  /* Create a wrapper effect - Top row: Logo + Form side by side */
-  .lg\\:col-span-2:first-child,
-  .lg\\:col-span-5:nth-child(2) {
-    display: inline-block !important;
-    vertical-align: top !important;
-  }
-
-  /* First column - Logo/QR (25% width, inline) */
+  /* First column - Logo/QR (20% width) */
   .lg\\:col-span-2:first-child {
-    width: 22% !important;
-    max-width: 22% !important;
-    display: inline-flex !important;
+    flex: 0 0 18% !important;
+    max-width: 18% !important;
+    display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     border: 1px solid #003366 !important;
-    border-radius: 4px !important;
-    padding: 8px !important;
-    background: #f8fafc !important;
-    margin-right: 2% !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    background: #f0f7ff !important;
     box-sizing: border-box !important;
   }
 
-  /* Middle column - Formulario (72% width, inline) */
+  /* Middle column - Formulario (38% width) */
   .lg\\:col-span-5:nth-child(2) {
-    width: 74% !important;
-    max-width: 74% !important;
+    flex: 0 0 38% !important;
+    max-width: 38% !important;
     box-sizing: border-box !important;
   }
 
-  /* Last column - Términos (100% width, below, after middle of page) */
+  /* Last column - Términos (40% width) */
   .lg\\:col-span-5:last-child {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-top: 15px !important;
-    padding-top: 10px !important;
-    border-top: 2px solid #003366 !important;
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+    box-sizing: border-box !important;
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   /* Uniform borders for form section */
   .lg\\:col-span-5:nth-child(2) > div {
     border: 1px solid #003366 !important;
-    border-radius: 4px !important;
-    padding: 10px !important;
+    border-radius: 8px !important;
+    padding: 12px !important;
     background: white !important;
     box-sizing: border-box !important;
+    height: 100% !important;
+  }
+
+  /* Terms panel styling for print */
+  .terms-panel-capture {
+    border-radius: 8px !important;
+    height: 100% !important;
   }
 
   /* Compact cards */
@@ -362,9 +363,9 @@
     margin-top: 2px !important;
   }
 
-  /* Page setup - Vertical, 1 page */
+  /* Page setup - Horizontal for 3 columns */
   @page {
     margin: 0.5cm;
-    size: A4 portrait;
+    size: A4 landscape;
   }
 }
