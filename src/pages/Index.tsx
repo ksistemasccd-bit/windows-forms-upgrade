@@ -177,27 +177,14 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   const handlePhotoCapture = async () => {
     if (mainRef.current) {
       try {
-        // Create a wrapper div with white background and proper styling
-        const wrapper = document.createElement('div');
-        wrapper.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 1200px; background: white; padding: 20px;';
-        document.body.appendChild(wrapper);
-        
-        // Clone the main content
-        const clone = mainRef.current.cloneNode(true) as HTMLElement;
-        clone.style.width = '100%';
-        wrapper.appendChild(clone);
-        
-        // Wait for rendering
-        await new Promise(resolve => setTimeout(resolve, 200));
-        
-        const canvas = await html2canvas(wrapper, {
+        // Capture directly from the visible element
+        const canvas = await html2canvas(mainRef.current, {
           useCORS: true,
           allowTaint: true,
           logging: false,
+          backgroundColor: '#ffffff',
+          removeContainer: true,
         } as any);
-        
-        // Remove the wrapper
-        document.body.removeChild(wrapper);
         
         const link = document.createElement('a');
         link.download = `foto-registro-${formData.dni || 'matricula'}.png`;
