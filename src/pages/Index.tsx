@@ -177,12 +177,14 @@ Fecha: ${new Date().toLocaleDateString('es-PE')}`;
   const handlePhotoCapture = async () => {
     if (mainRef.current) {
       try {
-        // Capture directly from the visible element
+        // Raw screenshot - 100% faithful to screen, no effects
         const canvas = await html2canvas(mainRef.current, {
           useCORS: true,
           allowTaint: true,
           logging: false,
-          backgroundColor: '#ffffff',
+          backgroundColor: null, // Transparent, use actual background
+          scale: 1, // 1:1 pixel ratio, no upscaling
+          imageTimeout: 0,
           removeContainer: true,
         } as any);
         
