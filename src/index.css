@@ -359,9 +359,9 @@
     margin-top: 2px !important;
   }
 
-  /* Page setup - Horizontal, 1 page */
+  /* Page setup - Vertical, 1 page */
   @page {
     margin: 0.5cm;
-    size: A4 landscape;
+    size: A4 portrait;
   }
 }
