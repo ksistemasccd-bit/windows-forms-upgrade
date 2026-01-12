@@ -63,9 +63,9 @@ const TermsPanel = () => {
 
         {/* Website */}
         <div className="mt-6 pt-4 border-t border-white/30">
-          <p className="text-white text-sm text-center">
+          <a href="www.ccdcapacitacion.edu.pe" target="_blank" className="text-white text-sm text-center">
             www.ccdcapacitacion.edu.pe
-          </p>
+          </a>
         </div>
       </div>
     </div>
